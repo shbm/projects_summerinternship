@@ -1,0 +1,30 @@
+body {
+    font-family: 'Inconsolata', monospace;
+    font-size: 1.5em;
+}
+
+a {
+    color: #00B7FF;
+}
+
+#banner {
+    min-height: 300px;
+    border-bottom: none;
+}
+
+#source-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    font-weight: 700
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #2196f3;
+}

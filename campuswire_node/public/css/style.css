@@ -1,0 +1,10 @@
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+#sprite {
+    background: url('../images/oie_twl14DmVaeem.png') no-repeat 0 -5px;
+    width: 27px;
+    height: 23px;
+}
+
+.fi-arrow-up {
+    font-size: 2rem;
+}

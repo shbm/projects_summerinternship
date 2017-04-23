@@ -1,0 +1,17 @@
+.navbar.navbar-default.fixed-top(role='navigation')
+  .navbar-header
+    button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+      span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand(rel='home', href='/') @CampusWire
+  .collapse.navbar-collapse
+    .col-sm-3.col-md-3.pull-right
+      .navbar-text
+        a(href='/submit') Submit
+        |&nbsp;| 
+        if(!user)
+            a(href='/login') Login
+        if(user)
+            a(href='/logout') Logout

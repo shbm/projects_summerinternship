@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO</title>
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+        <link rel='stylesheet' href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+        <link rel='stylesheet' href="{{ url_for('static', filename='style.css') }}" />
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="" class="navbar-brand">todo</a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span style="color: white">register/login<span></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="container" style="font-size: 1em;">
+
+            <form action="/" method="POST">
+                <div class="jumbotron">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <textarea name="newtodo" id="newtodo" value="" class="form-control custom-control" rows="3" placeholder="World Domination" required></textarea>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-lg btn-primary" type="submit">SAVE</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% for e in entries %}
+            <div class="jumbotron">
+                <div id="todo-data-{{e[0]}}">
+                    {{ e[1]|safe }}
+                </div>
+                <hr>
+                <a href="/edit/{{e[0]}}" name={{ e[0] }} class="edit-todo btn btn-primary btn-lg btn-success">(edit)</a>
+                <!--<a id="edit-todo" name={{ e[0] }} href="/edit/{{ e[0] }}" class="btn btn-primary btn-lg btn-success">(edit)</a>-->
+                {% if e[2] == 0 %}
+                <a id="unarchive-todo-{{e[0]}}" name={{ e[0] }} class="unarchive-todo btn btn-primary btn-lg btn-info">(unarchive)</a>
+                {% else %}
+                <a id="archive-todo-{{e[0]}}" name={{ e[0] }} class="archive-todo btn btn-primary btn-lg btn-danger">(archive)</a>
+                {% endif %}
+                <span class="text-muted" style="font-size: 0.9em">edited at {{ e[3] }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <footer class="footer">
+            <div style="margin-bottom: 0px" class="navbar navbar-default navbar-bottom navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a href="" class="navbar-brand" style="font-size: 1em;">A Shuchi Rawat Production</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+$('.archive-todo').click(function() {
+    var unarchive_id = $(this).attr('name');
+    console.log("ARCHIVE:" + unarchive_id);
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/archive",
+        "method": "POST",
+        "data": {
+            "action": "1",
+            "id": unarchive_id
+        }
+    }
+    console.log($(this).parent().html('archived'));
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+});
+
+$('.unarchive-todo').click(function() {
+    var archive_id = $(this).attr('name');
+    console.log("UNARCHIVE:" + archive_id);
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/archive",
+        "method": "POST",
+        "data": {
+            "action": "0",
+            "id": archive_id
+        }
+    }
+    console.log($(this).parent().html('unarchived'));
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+});
+    </script>
+</html>

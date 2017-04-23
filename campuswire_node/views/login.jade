@@ -1,0 +1,53 @@
+doctype html
+html
+    include ./head.jade
+    body
+        .container
+            if(user)
+                center
+                    h1
+                        |#{user.username} is already logged in.
+                        br
+                        a(href='/logout') Logout
+            if(!user)
+                .row
+                    .col-xs-12.col-sm-6.col-md-6
+                        h1 Login
+                        hr
+                        if(info)
+                            .alert.alert-danger.fade.in
+                                a.close(href='#', data-dismiss='alert') ×
+                                strong #{info}
+                        form(role='form', action='/login', method='post', style='max-width: 300px;')
+                            .form-group
+                                input.form-control(type='text', name='username', placeholder='Enter Username', required='')
+                            .form-group
+                                input.form-control(type='password', name='password', placeholder='Password', required='')
+                            button.btn.btn-default(type='submit') Login &nbsp;&nbsp;
+                            a(href='/')
+                                button.btn.btn-primary(type='button') Cancel
+                        hr
+                    .col-xs-12.col-md-6
+                        h1 Register
+                        hr
+                        if(registerInfo)
+                            .alert.alert-danger.fade.in
+                                a.close(href='#', data-dismiss='alert') ×
+                                strong #{registerInfo}
+                        form(role='form', action='/signup', method='post', style='max-width: 300px;')
+                            .form-group
+                                input.form-control(type='text', name='twitter', placeholder='Twitter Username')
+                            .form-group
+                                input.form-control(type='text', name='name', placeholder='Enter Name', required='')
+                            .form-group
+                                input.form-control(type='text', name='username', placeholder='Enter Username', required='')
+                            .form-group
+                                input.form-control(type='text', name='email', placeholder='Enter email', required='')
+                            .form-group
+                                input.form-control(type='password', name='password', placeholder='Password', required='')
+                            button.btn.btn-default(type='submit') Signup &nbsp;&nbsp;
+                            a(href='/')
+                                button.btn.btn-primary(type='button') Cancel
+                        hr
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')

@@ -1,0 +1,45 @@
+doctype html
+html(lang='en')
+  include ./head.jade
+  body
+    include ./header.jade
+    .container
+      if(message)
+        .alert.alert-danger.fade.in
+          a.close(href='#', data-dismiss='alert') ×
+          strong #{message}
+      .col-lg-12
+        if(data)
+            |#{data}
+        if(!data)
+            each val in post
+                .row
+                    a(href='?upvote='+val._id, title='upvote')
+                        i.fi-arrow-up
+                    span.item-rank &nbsp;##{++rank}.&nbsp;
+                    a(href='/post/'+val._id) #{val.title}
+                    |&nbsp;
+                    if(val.root_url)
+                        a(href=val.url) (#{val.root_url})
+                    br
+                    |#{val.points} points | submitted by 
+                    a(href='/user/'+val.user) #{val.user} 
+                    abbr.timeago(title=val.timestamp)
+                    |&nbsp;| 
+                    a(href='/post/'+val._id) COMMENT
+                    hr
+        if(data)
+            nav
+                ul.pager
+                    li.next
+                        a(href='/')
+                            |&#8592;GO HOME
+                            span(aria-hidden='true')
+        if(!data)
+            nav
+                ul.pager
+                    li.next
+                        a(href='/'+next_page)
+                            | Newer
+                            span(aria-hidden='true') &rarr;
+    include ./scripts.jade

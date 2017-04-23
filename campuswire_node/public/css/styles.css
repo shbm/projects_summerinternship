@@ -1,0 +1,48 @@
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+
+body {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+}
+
+abbr[title], abbr[data-original-title] {
+    cursor: auto;
+    border-bottom: 0px;
+}
+
+.fi-arrow-up {
+    font-size: 2rem;
+}
+
+.navbar-brand {
+  font: 30px 'Vollkorn', serif;
+}
+
+.navbar-text {
+  margin-top: 22px;
+  font: 30px 'Vollkorn', serif;
+  color: #777;
+  font-size: 25px;
+}
+
+
+.navbar-toggle {
+  margin-top: 18px;
+}
+
+.input-group {
+   margin: 15px 0 0 0;
+}
+
+.navbar-default {
+  border-color: #f8f8f8;
+}
+
+.navbar {
+ border-radius: 0px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
